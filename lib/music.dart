@@ -14,7 +14,7 @@ class _MusicState extends State<Music> {
       'title': "Tech House Vibes",
       'singer': "Alenjandro Magino",
       'url': "https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3",
-      'coverUrl': "https://picsum.photos/200"
+      'coverUrl': "https://homepages.cae.wisc.edu/~ece533/images/fruits.png"
     },
     {
       'title': "Tech House Vibes",
@@ -32,7 +32,7 @@ class _MusicState extends State<Music> {
       'title': "Tech House Vibes",
       'singer': "Alenjandro Magino",
       'url': "https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3",
-      'coverUrl': "https://picsum.photos/200"
+      'coverUrl': "https://homepages.cae.wisc.edu/~ece533/images/peppers.png"
     },
     {
       'title': "Tech House Vibes",
@@ -51,17 +51,10 @@ class _MusicState extends State<Music> {
   String currentTitle="";
   String currentCover="";
   String currentSinger="";
-  IconButton btnIcon = Icons.play_arrow as IconButton;
 
   AudioPlayer audioPlayer = new AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
   bool isPlaying = false;
   String currentSong = "";
-
-  Duration duration = new Duration();
-  Duration position = new Duration();
-
-
-
   void playMusic(String url)async{
       if(isPlaying && currentSong != url){
         audioPlayer.pause();
@@ -157,19 +150,6 @@ class _MusicState extends State<Music> {
                       IconButton(
                         iconSize: 42.0,
                           icon: Icon(Icons.play_arrow), onPressed: () {
-                          if(isPlaying){
-                            audioPlayer.pause();
-                            setState(() {
-                              btnIcon = Icons.pause as IconButton;
-                              isPlaying = false;
-                            });
-                          }else{
-                            audioPlayer.resume();
-                            setState(() {
-                              btnIcon = Icons.play_arrow as IconButton;
-                              isPlaying = true;
-                            });
-                          }
                       },
                       )
                     ],
