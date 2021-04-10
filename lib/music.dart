@@ -51,6 +51,7 @@ class _MusicState extends State<Music> {
   String currentTitle="";
   String currentCover="";
   String currentSinger="";
+  IconData btnIcon = Icons.play_arrow;
 
   AudioPlayer audioPlayer = new AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
   bool isPlaying = false;
@@ -123,8 +124,8 @@ class _MusicState extends State<Music> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        height: 55.0,
-                        width: 55.0,
+                        height: 50.0,
+                        width: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadiusDirectional.circular(6.0),
                             image: DecorationImage(
@@ -138,7 +139,7 @@ class _MusicState extends State<Music> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(currentTitle,style: TextStyle(
-                              fontSize: 15.0,fontWeight: FontWeight.w600,
+                              fontSize: 13.0,fontWeight: FontWeight.w500,
                             )),
                             SizedBox(height: 5.0),
                             Text(currentSinger,style: TextStyle(
@@ -147,11 +148,26 @@ class _MusicState extends State<Music> {
                           ],
                         ),
                       ),
+                      IconButton(iconSize:32,icon: Icon(Icons.skip_previous), onPressed: () {  },),
                       IconButton(
                         iconSize: 42.0,
-                          icon: Icon(Icons.play_arrow), onPressed: () {
+                          icon: Icon(btnIcon), onPressed: () {
+                          if(isPlaying){
+                            audioPlayer.pause();
+                            setState(() {
+                              btnIcon = Icons.pause;
+                              isPlaying = false;
+                            });
+                          }else {
+                            audioPlayer.resume();
+                            setState(() {
+                              btnIcon = Icons.play_arrow;
+                              isPlaying  = true;
+                            });
+                          }
                       },
-                      )
+                      ),
+                      IconButton(iconSize:32,icon: Icon(Icons.skip_next), onPressed: () {  },),
                     ],
                   ),
                 )
